@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Home from "./screens/Home";
 import Discover from "./screens/Discover";
+import LoginScreen from "./screens/LoginScreen";
+import SignupScreen from "./screens/SignupScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +38,7 @@ export default function App() {
           }}
         />
 
-<Tab.Screen
+        <Tab.Screen
           name="Discover"
           component={Discover}
           options={{
@@ -49,9 +51,20 @@ export default function App() {
             ),
           }}
         />
-
-
-
+        <Tab.Screen
+          name="Sign up"
+          component={SignupScreen}
+          options={{
+            headerRight: () => <Button title="Sign up" />,
+          }}
+        />
+        <Tab.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            headerRight: () => <Button title="Login" />,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

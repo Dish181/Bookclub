@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  Keyboard,
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -17,7 +17,6 @@ interface SignupScreenProps {
 }
 
 const SignupScreen: React.FC<SignupScreenProps> = () => {
-  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,7 +34,6 @@ const SignupScreen: React.FC<SignupScreenProps> = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         if (user) {
           navigation.navigate("Home");
         }
@@ -48,57 +46,45 @@ const SignupScreen: React.FC<SignupScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView
-        style={{ flex: 1, width: "100%" }}
-        keyboardShouldPersistTaps="always"
-      >
-        <Image style={styles.logo} source={require("../img/logo.webp")} />
-        {/* <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor="#aaaaaa"
-          onChangeText={setUsername}
-          value={username}
-          autoCapitalize="none"
-        /> */}
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder="Password"
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder="Confirm Password"
-          onChangeText={(text) => setConfirmPassword(text)}
-          value={confirmPassword}
-          autoCapitalize="none"
-        />
-        <TouchableOpacity style={styles.button} onPress={() => handleSignup()}>
-          <Text style={styles.buttonTitle}>Sign Up</Text>
-        </TouchableOpacity>
-        <View style={styles.footerView}>
-          <Text style={styles.footerText}>
-            Already have an account?
-            <Text onPress={goToLogin} style={styles.footerLink}>
-              Login
-            </Text>
+      <Image style={styles.logo} source={require("../img/logo.webp")} />
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#aaaaaa"
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        placeholderTextColor="#aaaaaa"
+        secureTextEntry
+        placeholder="Password"
+        onChangeText={(text) => setPassword(text)}
+        value={password}
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        placeholderTextColor="#aaaaaa"
+        onSubmitEditing={Keyboard.dismiss}
+        secureTextEntry
+        placeholder="Confirm Password"
+        onChangeText={(text) => setConfirmPassword(text)}
+        value={confirmPassword}
+        autoCapitalize="none"
+      />
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+        <Text style={styles.buttonTitle}>Sign Up</Text>
+      </TouchableOpacity>
+      <View style={styles.footerView}>
+        <Text style={styles.footerText}>
+          Already have an account?
+          <Text onPress={goToLogin} style={styles.footerLink}>
+            Login
           </Text>
-        </View>
-      </KeyboardAwareScrollView>
+        </Text>
+      </View>
     </View>
   );
 };
@@ -123,6 +109,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 48,
+    width: 300,
     borderRadius: 5,
     overflow: "hidden",
     backgroundColor: "white",
@@ -138,6 +125,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     marginTop: 20,
     height: 48,
+    width: 300,
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
