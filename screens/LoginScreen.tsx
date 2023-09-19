@@ -7,16 +7,14 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebase-config";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 interface LoginScreenProps {
   navigation: any;
 }
 
-const LoginScreen: React.FC<LoginScreenProps> = () => {
-  const navigation = useNavigation();
+const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +27,6 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         if (user) {
           navigation.navigate("Home");
         }

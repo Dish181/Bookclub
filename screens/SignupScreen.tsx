@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Keyboard,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -16,12 +15,10 @@ interface SignupScreenProps {
   navigation: any;
 }
 
-const SignupScreen: React.FC<SignupScreenProps> = () => {
+const SignupScreen: React.FC<SignupScreenProps> = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const navigation = useNavigation();
 
   const goToLogin = () => {
     navigation.navigate("Login");
