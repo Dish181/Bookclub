@@ -11,7 +11,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-
 interface SignupScreenProps {
   navigation: any;
 }
@@ -46,7 +45,7 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="always"
       >
-        <Image style={styles.logo} source={require("../../img/logo.webp")} />
+        <Image style={styles.logo} source={require("../img/logo.webp")} />
         <TextInput
           style={styles.input}
           placeholder="Username"

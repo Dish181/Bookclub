@@ -55,7 +55,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="always"
       >
-        <Image style={styles.logo} source={require("../../img/logo.webp")} />
+        <Image style={styles.logo} source={require("../img/logo.webp")} />
         <TextInput
           style={styles.input}
           placeholder="Email"
