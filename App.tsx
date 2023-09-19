@@ -1,39 +1,80 @@
-import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Button, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import Home from "./screens/Home";
+import Discover from "./screens/Discover";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const App: React.FC = () => {
-  const [user, setUser] = useState(null);
-
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Tab.Navigator
         screenOptions={{
-          headerTitle: "Bookclub",
-          headerTitleAlign: "center",
+          headerTitle: "Book Club",
+          headerStyle: {
+            backgroundColor: "darkblue",
+          },
+          headerTintColor: "white",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
         }}
       >
-        {user ? (
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: "Bookclub" }}
-          />
-        ) : (
-          <>
-            <Stack.Screen name="Sign up" component={SignupScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-          </>
-        )}
-      </Stack.Navigator>
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerRight: () => (
+              <Button
+                onPress={() => alert("This will take you to profile")}
+                title="Profile pic"
+                color="#fff"
+              />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="Discover"
+          component={Discover}
+          options={{
+            headerRight: () => (
+              <Button
+                onPress={() => alert("This will take you to profile")}
+                title="Profile pic"
+                color="#fff"
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Sign up"
+          component={SignupScreen}
+          options={{
+            headerRight: () => <Button title="Sign up" />,
+          }}
+        />
+        <Tab.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            headerRight: () => <Button title="Login" />,
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
-};
+}
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -15,11 +16,13 @@ interface SignupScreenProps {
   navigation: any;
 }
 
-const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
-  const [username, setUsername] = useState("");
+const SignupScreen: React.FC<SignupScreenProps> = () => {
+  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigation = useNavigation();
 
   const goToLogin = () => {
     navigation.navigate("Login");
@@ -32,6 +35,10 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
+        if (user) {
+          navigation.navigate("Home");
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -46,14 +53,14 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
         keyboardShouldPersistTaps="always"
       >
         <Image style={styles.logo} source={require("../img/logo.webp")} />
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           placeholder="Username"
           placeholderTextColor="#aaaaaa"
           onChangeText={setUsername}
           value={username}
           autoCapitalize="none"
-        />
+        /> */}
         <TextInput
           style={styles.input}
           placeholder="Email"
