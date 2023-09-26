@@ -1,6 +1,7 @@
-import { View, Button, StyleSheet } from "react-native";
+import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getSingleDoc } from "../gettingData";
+import { styles } from "../stylesheet";
 type CurrentRead = {
   author: string;
   description: string;
@@ -36,28 +37,26 @@ const BookclubCard: React.FC<{ bookclub_id: string; navigation: any }> = ({
   }, []);
 
   const handlePress = () => {
-
     navigation.navigate("SingleBookClubPage", {
       bookclub_id: bookclub_id,
     });
   };
   return (
-    <View style={styles.homeBook}>
-      <Button title={currentBookClub.name} onPress={handlePress}  color="#000"/>
+    <View style={styles.bookclubContainer}>
+      <ScrollView>
+        <Pressable onPress={handlePress}>
+          <View style={styles.bookclubImageContainer}>
+            <Image
+              style={styles.bookclubImage}
+              source={{ uri: currentBookClub.img_url }}
+            />
+          </View>
+
+          <Text style={styles.bookclubName}>{currentBookClub.name}</Text>
+        </Pressable>
+      </ScrollView>
     </View>
   );
 };
 
 export default BookclubCard;
-
-const styles = StyleSheet.create({
-  homeBook: {
-    marginTop: 15,
-    backgroundColor: "#C5BAAF",
-    borderColor: "#C5BAAF",
-    paddingVertical: 30,
-    paddingHorizontal: 60,
-    borderRadius: 10,
-    padding: 10,
-  },
-});

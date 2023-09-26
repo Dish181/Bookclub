@@ -1,46 +1,56 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
-  
   // Home page
   bookContainer: {
     marginTop: 20,
-    height: "100%",
-    backgroundColor: "#f4f4f4",
-    padding: 20,
-  },
-  homeUserContainer: {
-    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
   },
-  userImage: {
-    marginRight: 10,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-  },
-  homeUsername: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#000000",
-    textAlign: "center",
-  },
-  book: {
-    backgroundColor: "#0168d9",
-    borderWidth: 1,
-    borderColor: "#6fb1f7",
-    borderRadius: 8,
-    paddingVertical: 30,
-    paddingHorizontal: 20,
+  bookHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 16,
   },
-
-  bookText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
+  userImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 75,
+    marginRight: 16,
   },
-
+  username: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  bookclubContainer: {
+    justifyContent: "center",
+    flexDirection: "row",
+    padding: 16,
+    width: "80%",
+    marginTop: 15,
+    borderWidth: 1,
+    borderColor: "#C5BAAF",
+    borderRadius: 10,
+  },
+  bookclubImageContainer: {
+    width: "100%",
+    height: 120,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bookclubImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  bookclubName: {
+    padding: 30,
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   input: {
     height: 48,
     borderRadius: 5,
@@ -178,5 +188,4 @@ export const styles = StyleSheet.create({
   searchAddBookButton: {
     flex: 1,
   },
-
 });
