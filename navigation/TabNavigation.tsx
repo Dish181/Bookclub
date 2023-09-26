@@ -10,12 +10,16 @@ import { Ionicons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 const navTheme = DefaultTheme;
 navTheme.colors.background = "#ffebcd";
+navTheme.colors.text = "#424B54";
+console.log(navTheme);
 
 const TabNavigation: React.FC = () => {
   return (
     <NavigationContainer theme={navTheme} independent={true}>
       <Tab.Navigator
+      
         screenOptions={({ route }) => ({
+          
           tabBarInactiveBackgroundColor: "#FFEBCD",
           tabBarActiveBackgroundColor: "#424B54",
           tabBarInactiveTintColor: "#424B54",

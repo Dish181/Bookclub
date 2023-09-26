@@ -215,5 +215,9 @@ export const styles = StyleSheet.create({
     fontSize: 36,
     paddingVertical: 36,
     paddingHorizontal: 32,
+  },
+  bookClubPage: {
+    flex: 1,
+paddingBottom: 80
   }
 });

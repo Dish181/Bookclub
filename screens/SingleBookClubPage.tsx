@@ -109,6 +109,7 @@ export const SingleBookClubPage: React.FC<{
 
 
   return (
+    <View style={styles.bookClubPage}>
     <ScrollView nestedScrollEnabled={true}>
       <Text style={styles.basicContainer}>
         {" "}
@@ -215,5 +216,6 @@ export const SingleBookClubPage: React.FC<{
         ></Button>
       )}
     </ScrollView>
+    </View>
   );
 };
